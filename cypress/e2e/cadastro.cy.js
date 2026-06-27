@@ -23,6 +23,12 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
     cy.get('#user-name').should('contain', nome)
   });
 
+  it('Deve bloquear cadastro quando o email estiver repetido', () => {
+    //TO DO
+    //Usando comando customizado
+    
+  });
+
   
 });
 
