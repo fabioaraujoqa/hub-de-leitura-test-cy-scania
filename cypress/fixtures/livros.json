@@ -1,0 +1,16 @@
+[
+    {
+        "livro": "1984", 
+        "categoria": "ficção", 
+        "autor": "Nome autor"
+    }, 
+    {
+        "livro": "Dom Quixote", 
+        "categoria": "Romance", 
+        "ISBN": "123456413"
+    }, 
+    {
+        "livro": "O Hobbit", 
+        "categoria": "Aventura"
+    }
+]

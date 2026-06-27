@@ -29,6 +29,5 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
     
   });
 
-  
 });
 
