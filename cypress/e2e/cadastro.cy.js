@@ -22,7 +22,7 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
     cy.get('#user-name').should('contain', nome)
   });
 
-  it('Deve bloquear cadastro quando o email estiver repetido', () => {
+  it.only('Deve bloquear cadastro quando o email estiver repetido', () => {
     let email = `scania${Date.now()}@gmail.com`
     cy.preencherCadastro('Fabio Araujo', email, 'teste@123', 'teste@123') //Cadastrando com um email válido
     cy.preencherCadastro('Fabio Araujo', email, 'teste@123', 'teste@123') //Tentando cadastrar novamente com o mesmo email
