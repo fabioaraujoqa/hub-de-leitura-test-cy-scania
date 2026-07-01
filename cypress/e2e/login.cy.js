@@ -12,7 +12,7 @@ describe('Funcionalidade: Login no Hub de Leitura', () => {
         cy.fixture('usuario').then(user => {
             cy.login(user.usuario, user.senha)
         })
-
+        
         cy.url().should('contain', 'dashboard')
     });
 });

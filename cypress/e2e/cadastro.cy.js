@@ -10,7 +10,6 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
     let nome = faker.name.firstName()
     let sobrenome = faker.name.lastName()
     let email = faker.internet.email(nome)
-    //let email2 = `scania${Date.now()}@gmail.com`
 
     cy.get('#name').type(`${nome} ${sobrenome}`)
     cy.get('#email').type(email)
@@ -24,8 +23,10 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
   });
 
   it('Deve bloquear cadastro quando o email estiver repetido', () => {
-    //TO DO
-    //Usando comando customizado
+    let email = `scania${Date.now()}@gmail.com`
+    cy.preencherCadastro('Fabio Araujo', email, 'teste@123', 'teste@123') //Cadastrando com um email válido
+    cy.preencherCadastro('Fabio Araujo', email, 'teste@123', 'teste@123') //Tentando cadastrar novamente com o mesmo email
+    cy.get('#alert-container').should('contain', 'Erro ao criar conta.')
     
   });
 
