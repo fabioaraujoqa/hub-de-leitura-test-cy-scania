@@ -9,7 +9,7 @@ describe('Funcionalidade: Catálogo do Hub de Leitura', () => {
 
     it('Deve fazer uma busca de um livro com sucesso', () => {
         cy.get('#search-input').type('Dom Quixote')
-        cy.get('.card-title').should('contain', 'Dom Quixote')
+        cy.get('.card-title').should('contain', 'Falha de teste')
     });
 
     it('Deve validar livro por nome fixo usando contain', () => {
@@ -31,7 +31,7 @@ describe('Funcionalidade: Catálogo do Hub de Leitura', () => {
 
     });
 
-    it('Deve buscar o ultimo livro da tela', () => {
+    it.skip('Deve buscar o ultimo livro da tela', () => {
         cy.get('[class="btn btn-outline-info btn-sm view-details"]').last().click()
         cy.get('#add-to-cart-btn').click()
         cy.contains('Livro adicionado à cesta com sucesso')

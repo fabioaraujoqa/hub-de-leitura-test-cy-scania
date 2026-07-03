@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run", 
-    "test:chrome": "npx cypress run --browser chrome"
+    "test": "npx cypress run",
+    "test:chrome": "npx cypress run --browser chrome",
+    "test:cloud": "npx cypress run --record --key 6ba8fc5a-5a6d-40ea-aec1-8ba4d1caed08 --browser chrome",
+    "report": "npx allure serve --clean allure-results",
+    "report:generate": "npx allure generate --clean allure-results --output allure-report"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,7 @@
   },
   "homepage": "https://github.com/fabioaraujoqa/hub-de-leitura-test-cy-scania#readme",
   "devDependencies": {
+    "allure-cypress": "^3.10.2",
     "cypress": "^15.18.0"
   },
   "dependencies": {

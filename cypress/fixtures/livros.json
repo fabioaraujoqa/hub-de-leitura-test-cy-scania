@@ -1,8 +1,7 @@
 [
     {
         "livro": "1984", 
-        "categoria": "ficção", 
-        "autor": "Nome autor"
+        "categoria": "ficção"
     }, 
     {
         "livro": "Dom Quixote", 
@@ -12,5 +11,11 @@
     {
         "livro": "O Hobbit", 
         "categoria": "Aventura"
+    }, 
+    {
+        "livro": "O Alquimista"
+    }, 
+    {
+        "livro": "Hub de Leitura"
     }
 ]
