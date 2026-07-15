@@ -52,7 +52,7 @@ jobs:
         continue-on-error: true
 
       - name: Gerar Allure Report
-        run: npx allure generate --clean allure-results --output allure-report
+        run: npx allure generate allure-results --output allure-report
 
       - name: Upload do artefato do Pages
         uses: actions/upload-pages-artifact@v3
