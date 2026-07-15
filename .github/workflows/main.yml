@@ -1,0 +1,71 @@
+name: Testes E2E + Publicar Report
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependências do projeto de testes
+        run: npm ci
+
+      - name: Clonar hub-de-leitura
+        run: git clone https://github.com/fabioaraujoqa/hub-de-leitura.git /tmp/hub-de-leitura
+
+      - name: Instalar dependências do hub-de-leitura
+        run: npm install
+        working-directory: /tmp/hub-de-leitura
+
+      - name: Iniciar hub-de-leitura em background
+        run: npm start &
+        working-directory: /tmp/hub-de-leitura
+
+      - name: Aguardar servidor estar disponível
+        run: npx wait-on http://localhost:3000 --timeout 30000
+
+      - name: Rodar Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          install: false
+        continue-on-error: true
+
+      - name: Gerar Allure Report
+        run: npx allure generate --clean allure-results --output allure-report
+
+      - name: Upload do artefato do Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: allure-report/
+
+  deploy:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
